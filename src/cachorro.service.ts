@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Delete, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Cachorro } from './cachorro.entity';
@@ -14,7 +14,15 @@ export class CachorrosService {
     return this.CachorrosRepository.find();
   }
 
+  async findOne(id: number): Promise<Cachorro> {
+    return this.CachorrosRepository.findOne(id);
+  }
+
   async create(cachorro: Cachorro) {
     return this.CachorrosRepository.save(cachorro);
+  }
+
+  async delete(id: number) {
+    return this.CachorrosRepository.delete(id);
   }
 }
